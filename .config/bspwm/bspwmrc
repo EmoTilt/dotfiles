@@ -1,0 +1,42 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+~/.local/bin/Monitors.sh
+
+export GTK_THEME=Adwaita:dark
+
+bspc monitor HDMI-0 -d 1 2 3 4
+bspc monitor DP-1 -d 5 6 7 8
+bspc monitor DP-3 -d 9 10
+
+bspc config border_width         3
+bspc config window_gap          5
+
+bspc config split_ratio          0.53
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focused_border_color   "#c6a0f6"
+bspc config normal_border_color    "#b7bdf8"
+bspc config active_border_color    "#cad3f5"
+
+xinput set-prop "pointer:Compx VXE R1SE+" "libinput Scroll Method Enabled" 0, 0, 1
+xinput set-prop "pointer:Compx VXE R1SE+" "libinput Button Scrolling Button" 2
+xinput set-prop "pointer:Compx VXE Mouse 1K Dongle" "libinput Scroll Method Enabled" 0, 0, 1
+xinput set-prop "pointer:Compx VXE Mouse 1K Dongle" "libinput Button Scrolling Button" 2
+xset r rate 350 40
+
+feh --random --no-fehbg --bg-fill ~/wallpapers/
+
+~/.config/polybar/launch.sh &
+
+picom &
+
+pkill udiskie
+udiskie --no-automount --tray
+
+bspc rule -a Thunar state=floating follow=on
+bspc rule -a org.chromium.Chromium desktop='^3'
+bspc rule -a mpv state=floating
+bspc rule -a feh state=floating

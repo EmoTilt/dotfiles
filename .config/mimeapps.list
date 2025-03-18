@@ -1,0 +1,7 @@
+[Default Applications]
+image/png=userapp-feh -Z-9UTE32.desktop
+image/jpeg=userapp-feh -Z-9UTE32.desktop
+
+[Added Associations]
+image/png=feh.desktop;userapp-feh -Z-9UTE32.desktop;
+image/jpeg=feh.desktop;userapp-feh -Z-9UTE32.desktop;
